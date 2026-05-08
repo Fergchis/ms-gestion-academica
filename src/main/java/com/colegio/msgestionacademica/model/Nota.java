@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +23,10 @@ public class Nota {
 
     @Column
     private Float valor; // algoma?
+
+    @OneToOne
+    private Evaluacion evaluacion;
+
+    @OneToOne
+    private Alumno alumno;
 }

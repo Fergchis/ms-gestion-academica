@@ -5,24 +5,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table(name = "salasClase")
+@Table(name = "cargasacademicas")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class SalaClase {
+public class CargaAcademica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private Integer numSala; // saco esta wea? o creo otra tabla aparte?
+    private String diaSemana;
 
-    @Column // no se si dejar el lenght
-    private String horario; // NI PUTA IDEA DE QUE TIPO DE DATO USAR PARA LA FECHA, ASI QUE LO DEJO COMO STRING POR AHORA
+    @OneToOne
+    private Curso curso;
 }

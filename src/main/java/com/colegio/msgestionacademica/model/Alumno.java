@@ -1,31 +1,27 @@
 package com.colegio.msgestionacademica.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table(name = "usuariosCurso")
+@Table(name = "alumnos")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UsuarioCurso {
+public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // no se si hay que meterle alguna wea o es tabla puente nomas
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario", nullable = false)
-    private Usuario usuario;
+    @Column
+    private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name = "curso", nullable = false)
-    private Curso curso;
+    //creartabla intermedia entre alumno y curso y conectarlas con una relacion de muchos a muchos
 }
