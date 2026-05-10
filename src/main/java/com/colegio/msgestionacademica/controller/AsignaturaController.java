@@ -69,7 +69,7 @@ public class AsignaturaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAsignatura(@PathVariable Long id) {
-        asignaturaService.deleteAsignatura(id);
+        asignaturaService.deleteAsignaturaById(id);
         return ResponseEntity.noContent().build();
     }
 }

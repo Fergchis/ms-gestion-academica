@@ -69,7 +69,7 @@ public class NotaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNota(@PathVariable Long id) {
-        notaService.deleteNota(id);
+        notaService.deleteNotaById(id);
         return ResponseEntity.noContent().build();
     }
 }

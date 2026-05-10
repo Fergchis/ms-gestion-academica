@@ -20,6 +20,10 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String nombre; // algo mas aparte de nombre??
+    @Column(nullable = false, length = 20)
+    private String nivel;
+
+    @Column(nullable = false, length = 1)
+    private String letra;
+    //ejemplo: 1° Básico A, 2° Medio B, etc.
 }

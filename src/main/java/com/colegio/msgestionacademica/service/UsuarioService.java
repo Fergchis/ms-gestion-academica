@@ -17,6 +17,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private CargaAcademicaService cargaAcademicaService;
+
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
     }
@@ -33,21 +36,31 @@ public class UsuarioService {
     public Usuario updateUsuario(Usuario usuario) {
         Usuario existingUsuario = usuarioRepository.findById(usuario.getId()).orElse(null);
         if (existingUsuario != null) {
-            if (usuario.getNombre() != null) {
-                existingUsuario.setNombre(usuario.getNombre());
-            }
             if (usuario.getRut() != null) {
                 existingUsuario.setRut(usuario.getRut());
             }
-            if (usuario.getTipoUsuario() != null) {
-                existingUsuario.setTipoUsuario(usuario.getTipoUsuario());
+            if (usuario.getNombre() != null) {
+                existingUsuario.setNombre(usuario.getNombre());
+            }
+            if (usuario.getApellido() != null) {
+                existingUsuario.setApellido(usuario.getApellido());
+            }
+            if (usuario.getEmail() != null) {
+                existingUsuario.setEmail(usuario.getEmail());
+            }
+            // if (usuario.getPasswordHash() != null) {
+            //     existingUsuario.setPasswordHash(usuario.getPasswordHash());
+            // }
+            if (usuario.getRol() != null) {
+                existingUsuario.setRol(usuario.getRol());
             }
             return usuarioRepository.save(existingUsuario);
         }
         return null;
     }
 
-    public void deleteUsuario(Long id) {
+    public void deleteUsuarioById(Long id) {
+        cargaAcademicaService.deleteByDocenteId(id);
         usuarioRepository.deleteById(id);
     }
 }

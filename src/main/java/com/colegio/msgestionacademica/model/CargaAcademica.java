@@ -13,23 +13,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table(name = "notas")
+@Table(name = "cargasAcademica")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Nota {
+public class CargaAcademica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Double valor;
+    private String diaSemana; //no se si esto es un string uwu, lo dejo nullable false?
+
+    @Column(nullable = false)
+    private String bloqueHorario; //no se si esto es un string uwu, lo dejo nullable false?
 
     @ManyToOne
-    @JoinColumn(name = "evaluacion_id", nullable = false)
-    private Evaluacion evaluacion;
+    @JoinColumn(name = "curso_id", nullable = false)
+    private Curso curso;
 
     @ManyToOne
-    @JoinColumn(name = "alumno_id", nullable = false)
-    private Alumno alumno;
+    @JoinColumn(name = "docente_id", nullable = false) //le pongo docente?
+    private Usuario docente;
+
+    @ManyToOne
+    @JoinColumn(name = "asignatura_id", nullable = false)
+    private Asignatura asignatura;
 }

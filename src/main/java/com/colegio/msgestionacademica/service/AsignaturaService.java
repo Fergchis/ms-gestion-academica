@@ -17,6 +17,9 @@ public class AsignaturaService {
     @Autowired
     private AsignaturaRepository asignaturaRepository;
 
+    @Autowired
+    private CargaAcademicaService cargaAcademicaService;
+
     public List<Asignatura> getAllAsignaturas() {
         return asignaturaRepository.findAll();
     }
@@ -41,7 +44,8 @@ public class AsignaturaService {
         return null;
     }
 
-    public void deleteAsignatura(Long id) {
+    public void deleteAsignaturaById(Long id) {
+        cargaAcademicaService.deleteByAsignaturaId(id);
         asignaturaRepository.deleteById(id);
     }
 }

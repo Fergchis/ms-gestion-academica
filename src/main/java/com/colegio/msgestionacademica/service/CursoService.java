@@ -17,6 +17,12 @@ public class CursoService {
     @Autowired
     private CursoRepository cursoRepository;
 
+    @Autowired
+    private CargaAcademicaService cargaAcademicaService;
+
+    @Autowired
+    private AlumnoCursoService alumnoCursoService;
+
     public List<Curso> getAllCursos() {
         return cursoRepository.findAll();
     }
@@ -33,15 +39,20 @@ public class CursoService {
     public Curso updateCurso(Curso curso) {
         Curso existingCurso = cursoRepository.findById(curso.getId()).orElse(null);
         if (existingCurso != null) {
-            if (curso.getNombre() != null) {
-                existingCurso.setNombre(curso.getNombre());
+            if (curso.getNivel() != null) {
+                existingCurso.setNivel(curso.getNivel());
+            }
+            if (curso.getLetra() != null) {
+                existingCurso.setLetra(curso.getLetra());
             }
             return cursoRepository.save(existingCurso);
         }
         return null;
     }
 
-    public void deleteCurso(Long id) {
+    public void deleteCursoById(Long id) {
+        alumnoCursoService.deleteByCursoId(id);
+        cargaAcademicaService.deleteByCursoId(id);
         cursoRepository.deleteById(id);
     }
 }

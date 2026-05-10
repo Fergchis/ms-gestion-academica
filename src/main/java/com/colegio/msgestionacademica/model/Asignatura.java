@@ -20,6 +20,6 @@ public class Asignatura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 30)
     private String nombre;
 }

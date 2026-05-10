@@ -1,10 +1,14 @@
 package com.colegio.msgestionacademica.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +24,16 @@ public class Evaluacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String unidad; // esta wea no se si va aqui o en asignatura
-    // no se que poner aqui, se que esto esta conectado con asignatura, nota y alumno, necesita algo mas? maybe fecha?
-    // donde mierda incluyo puntaje total y puntaje obtenido?
+    @Column(nullable = false, length = 60)
+    private String nombre;
+
+    @Column(nullable = false)
+    private LocalDate fecha; // esta wea si que no se si ponerla datetime, depende del front asumo
+
+    @Column(nullable = false)
+    private Double ponderacion;
+
+    @ManyToOne
+    @JoinColumn(name = "cargaAcademica_id", nullable = false)
+    private CargaAcademica cargaAcademica;
 }
