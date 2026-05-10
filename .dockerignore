@@ -7,3 +7,5 @@ HELP.md
 .idea/
 *.log
 .env
+.env.*
+!.env.example
