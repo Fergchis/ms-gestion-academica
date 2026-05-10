@@ -20,8 +20,21 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(unique = true, nullable = false)
+    private String rut;
+
+    @Column(nullable = false, length = 50)
     private String nombre;
 
-    //creartabla intermedia entre alumno y curso y conectarlas con una relacion de muchos a muchos
+    @Column(nullable = false, length = 50)
+    private String apellido;
+
+    @Column(nullable = false, length = 100)
+    private String nombreApoderado;
+
+    @Column(nullable = false, length = 100)
+    private String emailApoderado;
+
+    @Column(nullable = false, length = 9)
+    private String telefonoApoderado;
 }

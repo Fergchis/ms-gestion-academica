@@ -69,7 +69,7 @@ public class EvaluacionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvaluacion(@PathVariable Long id) {
-        evaluacionService.deleteEvaluacion(id);
+        evaluacionService.deleteEvaluacionById(id);
         return ResponseEntity.noContent().build();
     }
 }

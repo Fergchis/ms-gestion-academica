@@ -5,7 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +22,14 @@ public class Nota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Float valor; // algoma?
+    @Column(nullable = false)
+    private Double valor;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "evaluacion_id", nullable = false)
     private Evaluacion evaluacion;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "alumno_id", nullable = false)
     private Alumno alumno;
 }

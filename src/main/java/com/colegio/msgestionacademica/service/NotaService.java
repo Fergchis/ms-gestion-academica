@@ -36,12 +36,36 @@ public class NotaService {
             if (nota.getValor() != null) {
                 existingNota.setValor(nota.getValor());
             }
+            if (nota.getEvaluacion() != null) {
+                existingNota.setEvaluacion(nota.getEvaluacion());
+            }
+            if (nota.getAlumno() != null) {
+                existingNota.setAlumno(nota.getAlumno());
+            }
             return notaRepository.save(existingNota);
         }
         return null;
     }
 
-    public void deleteNota(Long id) {
+    public void deleteNotaById(Long id) {
         notaRepository.deleteById(id);
+    }
+
+    public void deleteByEvaluacionId(Long evaluacionId) {
+        List<Nota> notas = notaRepository.findAll();
+        for (Nota nota : notas) {
+            if (nota.getEvaluacion() != null && nota.getEvaluacion().getId().equals(evaluacionId)) {
+                notaRepository.deleteById(nota.getId());
+            }
+        }
+    }
+
+    public void deleteByAlumnoId(Long alumnoId) {
+        List<Nota> notas = notaRepository.findAll();
+        for (Nota nota : notas) {
+            if (nota.getAlumno() != null && nota.getAlumno().getId().equals(alumnoId)) {
+                notaRepository.deleteById(nota.getId());
+            }
+        }
     }
 }

@@ -20,12 +20,21 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String nombre;
-
-    @Column
+    @Column(nullable = false, unique = true, length = 12) // idk hno
     private String rut;
 
-    @Column
-    private String tipoUsuario; // "admin" / "estudiante" / "apoderado" (estos ultimos solo para guardar datos)
+    @Column(nullable = false, length = 50)
+    private String nombre;
+
+    @Column(nullable = false, length = 50)
+    private String apellido;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+
+    // @Column(nullable = false, length = 255)
+    // private String passwordHash;
+
+    @Column(nullable = false, length = 20)
+    private String rol; // Admin, Coordinador, Profesor
 }

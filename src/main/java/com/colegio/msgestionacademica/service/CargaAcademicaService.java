@@ -17,6 +17,9 @@ public class CargaAcademicaService {
     @Autowired
     private CargaAcademicaRepository cargaAcademicaRepository;
 
+    @Autowired
+    private EvaluacionService evaluacionService;
+
     public List<CargaAcademica> getAllCargasAcademicas() {
         return cargaAcademicaRepository.findAll();
     }
@@ -36,12 +39,52 @@ public class CargaAcademicaService {
             if (cargaAcademica.getDiaSemana() != null) {
                 existingCargaAcademica.setDiaSemana(cargaAcademica.getDiaSemana());
             }
+            if (cargaAcademica.getBloqueHorario() != null) {
+                existingCargaAcademica.setBloqueHorario(cargaAcademica.getBloqueHorario());
+            }
+            if (cargaAcademica.getCurso() != null) {
+                existingCargaAcademica.setCurso(cargaAcademica.getCurso());
+            }
+            if (cargaAcademica.getDocente() != null) {
+                existingCargaAcademica.setDocente(cargaAcademica.getDocente());
+            }
+            if (cargaAcademica.getAsignatura() != null) {
+                existingCargaAcademica.setAsignatura(cargaAcademica.getAsignatura());
+            }
             return cargaAcademicaRepository.save(existingCargaAcademica);
         }
         return null;
     }
 
-    public void deleteCargaAcademica(Long id) {
+    public void deleteCargaAcademicaById(Long id) {
+        evaluacionService.deleteByCargaAcademicaId(id);
         cargaAcademicaRepository.deleteById(id);
+    }
+
+    public void deleteByAsignaturaId(Long asignaturaId) {
+        List<CargaAcademica> cargasAcademica = cargaAcademicaRepository.findAll();
+        for (CargaAcademica cargaAcademica : cargasAcademica) {
+            if (cargaAcademica.getAsignatura() != null && cargaAcademica.getAsignatura().getId().equals(asignaturaId)) {
+                deleteCargaAcademicaById(cargaAcademica.getId());
+            }
+        }
+    }
+
+    public void deleteByDocenteId(Long docenteId) {
+        List<CargaAcademica> cargasAcademica = cargaAcademicaRepository.findAll();
+        for (CargaAcademica cargaAcademica : cargasAcademica) {
+            if (cargaAcademica.getDocente() != null && cargaAcademica.getDocente().getId().equals(docenteId)) {
+                deleteCargaAcademicaById(cargaAcademica.getId());
+            }
+        }
+    }
+
+    public void deleteByCursoId(Long cursoId) {
+        List<CargaAcademica> cargasAcademica = cargaAcademicaRepository.findAll();
+        for (CargaAcademica cargaAcademica : cargasAcademica) {
+            if (cargaAcademica.getCurso() != null && cargaAcademica.getCurso().getId().equals(cursoId)) {
+                deleteCargaAcademicaById(cargaAcademica.getId());
+            }
+        }
     }
 }

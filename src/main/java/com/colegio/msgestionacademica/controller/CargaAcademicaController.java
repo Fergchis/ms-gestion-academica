@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.colegio.msgestionacademica.model.CargaAcademica;
 import com.colegio.msgestionacademica.service.CargaAcademicaService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/api/cargas-academicas")
@@ -70,7 +69,7 @@ public class CargaAcademicaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCargaAcademica(@PathVariable Long id) {
-        cargaAcademicaService.deleteCargaAcademica(id);
+        cargaAcademicaService.deleteCargaAcademicaById(id);
         return ResponseEntity.noContent().build();
     }
 }
