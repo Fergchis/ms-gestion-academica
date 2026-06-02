@@ -25,5 +25,4 @@ public class Curso {
 
     @Column(nullable = false, length = 1)
     private String letra;
-    //ejemplo: 1° Básico A, 2° Medio B, etc.
 }

@@ -23,17 +23,17 @@ public class CargaAcademica {
     private Long id;
 
     @Column(nullable = false)
-    private String diaSemana; //no se si esto es un string uwu, lo dejo nullable false?
+    private String diaSemana;
 
     @Column(nullable = false)
-    private String bloqueHorario; //no se si esto es un string uwu, lo dejo nullable false?
+    private String bloqueHorario;
 
     @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
 
     @ManyToOne
-    @JoinColumn(name = "docente_id", nullable = false) //le pongo docente?
+    @JoinColumn(name = "docente_id", nullable = false)
     private Usuario docente;
 
     @ManyToOne

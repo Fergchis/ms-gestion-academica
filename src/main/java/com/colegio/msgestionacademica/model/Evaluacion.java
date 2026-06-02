@@ -28,7 +28,7 @@ public class Evaluacion {
     private String nombre;
 
     @Column(nullable = false)
-    private LocalDate fecha; // esta wea si que no se si ponerla datetime, depende del front asumo
+    private LocalDate fecha;
 
     @Column(nullable = false)
     private Double ponderacion;
