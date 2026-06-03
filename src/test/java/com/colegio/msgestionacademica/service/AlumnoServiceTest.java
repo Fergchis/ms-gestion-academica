@@ -23,7 +23,7 @@ class AlumnoServiceTest {
     @Mock // mock para simular acceso a datos
     private AlumnoRepository alumnoRepository;
 
-    @Mock // mock de notas y alumno-curso porque AlumnoService depende de ellos
+    @Mock // mock de notas y alumno-curso porque AlumnoService por dependencia
     private NotaService notaService;
 
     @Mock
@@ -38,11 +38,11 @@ class AlumnoServiceTest {
 
         when(alumnoRepository.findAll()).thenReturn(List.of(alumno)); // simula retorno de lista con un alumno
         
-        List<Alumno> resultado = alumnoService.getAllAlumnos(); // ejecuta método real
+        List<Alumno> resultado = alumnoService.getAllAlumnos(); // ejecuta metodo real
 
         assertEquals(1, resultado.size()); // valida que solo tiene un elemento
         assertEquals("Brad", resultado.get(0).getNombre()); // valida que el nombre sea del creador del sexo
-        verify(alumnoRepository).findAll(); // verificación del llamado al método "findAll"
+        verify(alumnoRepository).findAll(); // verificacion del llamado al método "findAll"
     }
 
     @Test
@@ -63,7 +63,7 @@ class AlumnoServiceTest {
                 "Brad",
                 "Sexo",
                 "Don Sexo",
-                "donSexo@correo.cl",
+                "donSexo@gmail.com",
                 "916745678"
         );
     }

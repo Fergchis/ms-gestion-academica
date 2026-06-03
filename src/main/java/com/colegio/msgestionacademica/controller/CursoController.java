@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.colegio.msgestionacademica.model.Curso;
 import com.colegio.msgestionacademica.service.CursoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/cursos")
 public class CursoController {
@@ -42,13 +44,13 @@ public class CursoController {
     }
 
     @PostMapping
-    public ResponseEntity<Curso> createCurso(@RequestBody Curso curso) {
+    public ResponseEntity<Curso> createCurso(@Valid @RequestBody Curso curso) {
         Curso createdCurso = cursoService.createCurso(curso);
         return ResponseEntity.status(201).body(createdCurso);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Curso> updateCurso(@PathVariable Long id, @RequestBody Curso curso) {
+    public ResponseEntity<Curso> updateCurso(@PathVariable Long id, @Valid @RequestBody Curso curso) {
         curso.setId(id);
         Curso updatedCurso = cursoService.createCurso(curso);
         if (updatedCurso == null) {

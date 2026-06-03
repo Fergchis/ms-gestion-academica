@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.colegio.msgestionacademica.model.Nota;
 import com.colegio.msgestionacademica.service.NotaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/notas")
 public class NotaController {
@@ -42,13 +44,13 @@ public class NotaController {
     }
 
     @PostMapping
-    public ResponseEntity<Nota> createNota(@RequestBody Nota nota) {
+    public ResponseEntity<Nota> createNota(@Valid @RequestBody Nota nota) {
         Nota createdNota = notaService.createNota(nota);
         return ResponseEntity.status(201).body(createdNota);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Nota> updateNota(@PathVariable Long id, @RequestBody Nota nota) {
+    public ResponseEntity<Nota> updateNota(@PathVariable Long id, @Valid @RequestBody Nota nota) {
         nota.setId(id);
         Nota updatedNota = notaService.createNota(nota);
         if (updatedNota == null) {

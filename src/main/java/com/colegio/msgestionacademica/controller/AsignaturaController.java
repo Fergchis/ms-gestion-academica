@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.colegio.msgestionacademica.model.Asignatura;
 import com.colegio.msgestionacademica.service.AsignaturaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/asignaturas")
 public class AsignaturaController {
@@ -42,13 +44,13 @@ public class AsignaturaController {
     }
 
     @PostMapping
-    public ResponseEntity<Asignatura> createAsignatura(@RequestBody Asignatura asignatura) {
+    public ResponseEntity<Asignatura> createAsignatura(@Valid @RequestBody Asignatura asignatura) {
         Asignatura createdAsignatura = asignaturaService.createAsignatura(asignatura);
         return ResponseEntity.status(201).body(createdAsignatura);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Asignatura> updateAsignatura(@PathVariable Long id, @RequestBody Asignatura asignatura) {
+    public ResponseEntity<Asignatura> updateAsignatura(@PathVariable Long id, @Valid @RequestBody Asignatura asignatura) {
         asignatura.setId(id);
         Asignatura updatedAsignatura = asignaturaService.createAsignatura(asignatura);
         if (updatedAsignatura == null) {

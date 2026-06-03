@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +22,13 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nivel es obligatorio")
+    @Size(max = 20, message = "El nivel no puede superar los 20 caracteres")
     @Column(nullable = false, length = 20)
     private String nivel;
 
+    @NotBlank(message = "La letra es obligatoria")
+    @Size(max = 1, message = "La letra no puede superar 1 caracter")
     @Column(nullable = false, length = 1)
     private String letra;
 }
