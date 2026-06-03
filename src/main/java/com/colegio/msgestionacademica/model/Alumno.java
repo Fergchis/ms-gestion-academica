@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Alumno {
 
     @NotBlank(message = "El RUT es obligatorio")
     @Size(max = 12, message = "El RUT no puede superar los 12 caracteres")
+    @Pattern(regexp = "^\\d{8}-[\\dkK]$", message = "El RUT debe tener formato 12345678-9 o 12345678-K")
     @Column(unique = true, nullable = false)
     private String rut;
 
@@ -51,6 +53,7 @@ public class Alumno {
 
     @NotBlank(message = "El teléfono del apoderado es obligatorio")
     @Size(min = 9, max = 9, message = "El teléfono del apoderado debe tener 9 caracteres")
+    @Pattern(regexp = "^9\\d{8}$", message = "El teléfono del apoderado debe comenzar con 9 y tener 9 dígitos")
     @Column(nullable = false, length = 9)
     private String telefonoApoderado;
 }

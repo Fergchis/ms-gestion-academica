@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Curso {
 
     @NotBlank(message = "La letra es obligatoria")
     @Size(max = 1, message = "La letra no puede superar 1 caracter")
+    @Pattern(regexp = "^[A-Z]$", message = "La letra del curso debe ser una letra mayúscula")
     @Column(nullable = false, length = 1)
     private String letra;
 }
