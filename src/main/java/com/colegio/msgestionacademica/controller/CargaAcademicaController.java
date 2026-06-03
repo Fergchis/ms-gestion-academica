@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.colegio.msgestionacademica.model.CargaAcademica;
 import com.colegio.msgestionacademica.service.CargaAcademicaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/cargas-academicas")
 public class CargaAcademicaController {
@@ -42,13 +44,13 @@ public class CargaAcademicaController {
     }
 
     @PostMapping
-    public ResponseEntity<CargaAcademica> createCargaAcademica(@RequestBody CargaAcademica cargaAcademica) {
+    public ResponseEntity<CargaAcademica> createCargaAcademica(@Valid @RequestBody CargaAcademica cargaAcademica) {
         CargaAcademica createdCargaAcademica = cargaAcademicaService.createCargaAcademica(cargaAcademica);
         return ResponseEntity.status(201).body(createdCargaAcademica);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CargaAcademica> updateCargaAcademica(@PathVariable Long id, @RequestBody CargaAcademica cargaAcademica) {
+    public ResponseEntity<CargaAcademica> updateCargaAcademica(@PathVariable Long id, @Valid @RequestBody CargaAcademica cargaAcademica) {
         cargaAcademica.setId(id);
         CargaAcademica updatedCargaAcademica = cargaAcademicaService.createCargaAcademica(cargaAcademica);
         if (updatedCargaAcademica == null) {

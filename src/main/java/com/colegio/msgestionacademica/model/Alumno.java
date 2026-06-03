@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,21 +23,34 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El RUT es obligatorio")
+    @Size(max = 12, message = "El RUT no puede superar los 12 caracteres")
     @Column(unique = true, nullable = false)
     private String rut;
 
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(max = 50, message = "El nombre no puede superar los 50 caracteres")
     @Column(nullable = false, length = 50)
     private String nombre;
 
+    @NotBlank(message = "El apellido es obligatorio")
+    @Size(max = 50, message = "El apellido no puede superar los 50 caracteres")
     @Column(nullable = false, length = 50)
     private String apellido;
 
+    @NotBlank(message = "El nombre del apoderado es obligatorio")
+    @Size(max = 100, message = "El nombre del apoderado no puede superar los 100 caracteres")
     @Column(nullable = false, length = 100)
     private String nombreApoderado;
 
+    @NotBlank(message = "El email del apoderado es obligatorio")
+    @Email(message = "El email del apoderado debe tener un formato válido")
+    @Size(max = 100, message = "El email del apoderado no puede superar los 100 caracteres")
     @Column(nullable = false, length = 100)
     private String emailApoderado;
 
+    @NotBlank(message = "El teléfono del apoderado es obligatorio")
+    @Size(min = 9, max = 9, message = "El teléfono del apoderado debe tener 9 caracteres")
     @Column(nullable = false, length = 9)
     private String telefonoApoderado;
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.colegio.msgestionacademica.model.Evaluacion;
 import com.colegio.msgestionacademica.service.EvaluacionService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/evaluaciones")
 public class EvaluacionController {
@@ -42,13 +44,13 @@ public class EvaluacionController {
     }
 
     @PostMapping
-    public ResponseEntity<Evaluacion> createEvaluacion(@RequestBody Evaluacion evaluacion) {
+    public ResponseEntity<Evaluacion> createEvaluacion(@Valid @RequestBody Evaluacion evaluacion) {
         Evaluacion createdEvaluacion = evaluacionService.createEvaluacion(evaluacion);
         return ResponseEntity.status(201).body(createdEvaluacion);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Evaluacion> updateEvaluacion(@PathVariable Long id, @RequestBody Evaluacion evaluacion) {
+    public ResponseEntity<Evaluacion> updateEvaluacion(@PathVariable Long id, @Valid @RequestBody Evaluacion evaluacion) {
         evaluacion.setId(id);
         Evaluacion updatedEvaluacion = evaluacionService.createEvaluacion(evaluacion);
         if (updatedEvaluacion == null) {

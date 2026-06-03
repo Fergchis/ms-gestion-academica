@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.colegio.msgestionacademica.model.Alumno;
 import com.colegio.msgestionacademica.service.AlumnoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/alumnos")
 public class AlumnoController {
@@ -42,13 +44,13 @@ public class AlumnoController {
     }
 
     @PostMapping
-    public ResponseEntity<Alumno> createAlumno(@RequestBody Alumno alumno) {
+    public ResponseEntity<Alumno> createAlumno(@Valid @RequestBody Alumno alumno) {
         Alumno createdAlumno = alumnoService.createAlumno(alumno);
         return ResponseEntity.status(201).body(createdAlumno);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Alumno> updateAlumno(@PathVariable Long id, @RequestBody Alumno alumno) {
+    public ResponseEntity<Alumno> updateAlumno(@PathVariable Long id, @Valid @RequestBody Alumno alumno) {
         alumno.setId(id);
         Alumno updatedAlumno = alumnoService.createAlumno(alumno);
         if (updatedAlumno == null) {

@@ -48,9 +48,6 @@ public class UsuarioService {
             if (usuario.getEmail() != null) {
                 existingUsuario.setEmail(usuario.getEmail());
             }
-            // if (usuario.getPasswordHash() != null) {
-            //     existingUsuario.setPasswordHash(usuario.getPasswordHash());
-            // }
             if (usuario.getRol() != null) {
                 existingUsuario.setRol(usuario.getRol());
             }
